@@ -8,9 +8,9 @@
     <artifactId>Spring-Hibernate</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
-<!--    <modules>-->
-<!--        <module>spring-demo</module>-->
-<!--    </modules>-->
+    <modules>
+        <module>spring-demo</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

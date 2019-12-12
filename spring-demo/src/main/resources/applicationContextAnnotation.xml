@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.zhekbland.app3"/>
+
+<!--    &lt;!&ndash;    load the properties file: sport.properties&ndash;&gt;-->
+<!--    <context:property-placeholder location="classpath:sport.properties"/>-->
+
+<!--    &lt;!&ndash;    IoC in Action: We create bean via container&ndash;&gt;-->
+<!--    <bean id="myFortune"-->
+<!--          class="com.zhekbland.app1.HappyFortuneService"/>-->
+
+<!--    &lt;!&ndash;    DI in Action: We inject dependency(properties) via constructor&ndash;&gt;-->
+<!--    <bean id="baseballCoach"-->
+<!--          class="com.zhekbland.app1.BaseballCoach">-->
+<!--        <constructor-arg ref="myFortune"/>-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash;    DI in Action: We inject dependency(properties) via setter and-->
+<!--    we inject class's values&ndash;&gt;-->
+<!--    <bean id="cricketCoach"-->
+<!--          class="com.zhekbland.app1.CricketCoach">-->
+<!--        <property name="fortuneService" ref="myFortune"/>-->
+<!--        <property name="emailAddress" value="cricket@gmail.com"/>-->
+<!--        <property name="team" value="Eagles"/>-->
+<!--    </bean>-->
+
+<!--    &lt;!&ndash;    DI in Action: We inject dependency(properties) via setter and-->
+<!--    we inject class's values from outer file properties&ndash;&gt;-->
+<!--    <bean id="trackCoach"-->
+<!--          class="com.zhekbland.app1.TrackCoach">-->
+<!--        <constructor-arg ref="myFortune"/>-->
+
+<!--        &lt;!&ndash;        from properties file via context in the top of the page&ndash;&gt;-->
+<!--        <property name="emailAddress" value="${foo.email}"/>-->
+<!--        <property name="team" value="${foo.team}"/>-->
+<!--    </bean>-->
+
+
+</beans>

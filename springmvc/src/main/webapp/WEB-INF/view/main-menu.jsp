@@ -1,6 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/resources/css/my-test.css">
+
+    <script src="${pageContext.request.contextPath}/resources/js/simple-test.js"></script>
+
     <title>Title</title>
 </head>
 <body>
@@ -8,5 +13,14 @@
 <hr>
 
 <a href="showForm">Hello World form</a>
+
+<br><br>
+
+<img src="${pageContext.request.contextPath}/resources/images/spring-logo.png" />
+
+<br><br>
+
+<input type="button" onclick="doSomeWork()" value="Click Me"/>
+
 </body>
 </html>

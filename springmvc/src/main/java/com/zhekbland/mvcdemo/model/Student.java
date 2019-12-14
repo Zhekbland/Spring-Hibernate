@@ -36,6 +36,11 @@ public class Student {
      */
     private LinkedHashMap<String, String> favoriteLanguages;
 
+    /**
+     * Values for checkboxes in JSP.
+     */
+    private String[] operatingSystems;
+
     public Student() {
         countryOptions = new LinkedHashMap<>();
 
@@ -90,5 +95,13 @@ public class Student {
 
     public LinkedHashMap<String, String> getFavoriteLanguages() {
         return favoriteLanguages;
+    }
+
+    public String[] getOperatingSystems() {
+        return operatingSystems;
+    }
+
+    public void setOperatingSystems(String[] operatingSystems) {
+        this.operatingSystems = operatingSystems;
     }
 }

@@ -15,6 +15,9 @@
             <form:options items="${student.countryOptions}"/>
         </form:select>
         <br><br>
+        Favorite Language:
+        <form:radiobuttons path="language" items="${student.favoriteLanguages}"/>
+        <br><br>
         <input type="submit" value="Submit">
     </form:form>
 </body>

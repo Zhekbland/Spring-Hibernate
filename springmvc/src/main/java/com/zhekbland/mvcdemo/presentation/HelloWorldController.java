@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * Simple example of form and submit and redirect to another form (processForm).
+ * Parent controller.
  *
  * @author Evgeny Shpytev (mailto:eshpytev@mail.ru).
- * @version 1.
+ * @version 2.
  * @since 13.12.2019.
  */
 @Controller
+@RequestMapping("/hello") //parent controller
 public class HelloWorldController {
 
     @RequestMapping("/showForm")

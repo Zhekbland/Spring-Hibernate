@@ -2,6 +2,8 @@ package com.zhekbland.mvcdemo.model;
 
 import org.springframework.stereotype.Component;
 
+import java.util.LinkedHashMap;
+
 public class Student {
 
     /**
@@ -19,8 +21,18 @@ public class Student {
      */
     private String country;
 
+    /**
+     * Value for select OPTIONS in JSP.
+     */
+    private LinkedHashMap<String, String> countryOptions;
 
     public Student() {
+        countryOptions = new LinkedHashMap<>();
+
+        countryOptions.put("BR", "Brasil");
+        countryOptions.put("FR", "France");
+        countryOptions.put("RU", "Russia");
+        countryOptions.put("US", "USA");
     }
 
     public String getFirstName() {
@@ -45,5 +57,9 @@ public class Student {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public LinkedHashMap<String, String> getCountryOptions() {
+        return countryOptions;
     }
 }

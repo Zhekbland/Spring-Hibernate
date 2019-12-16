@@ -18,10 +18,14 @@ public class Customer {
      * Adding validation for require fields and
      * define the boundaries of the value
      * And catching errors
+     *
+     * Using Integer instead int for "is required"
+     * message to avoid convert error.
      */
+    @NotNull(message = "is required")
     @Min(value = 0, message = "must be greater than or equal to zero")
     @Max(value = 10, message = "must be less than or equal to 10")
-    private int freePasses;
+    private Integer freePasses;
 
     /**
      * Adding validation for require fields and
@@ -47,11 +51,11 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public int getFreePasses() {
+    public Integer getFreePasses() {
         return freePasses;
     }
 
-    public void setFreePasses(int freePasses) {
+    public void setFreePasses(Integer freePasses) {
         this.freePasses = freePasses;
     }
 

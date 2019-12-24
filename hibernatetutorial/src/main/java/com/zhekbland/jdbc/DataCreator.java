@@ -18,12 +18,19 @@ public class DataCreator implements AutoCloseable {
 
     private Connection connection;
 
+    private static final DataCreator INSTANCE = new DataCreator();
+
     /**
      * Create and init config and get values from parser.properties.
      */
     public DataCreator() {
         this.config = new Config();
         config.init();
+        getConnection();
+    }
+
+    public static DataCreator getInstance() {
+        return INSTANCE;
     }
 
     /**
@@ -91,15 +98,15 @@ public class DataCreator implements AutoCloseable {
     }
 
     /**
-     * Create database if it wasn't create.
+     * Delete table.
      */
     public void deleteTable() {
-        try {
-            this.connection = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/hb_student_tracker",
-                    config.get("jdbc.username"),
-                    config.get("jdbc.password")
-            );
+//        try {
+//            this.connection = DriverManager.getConnection(
+//                    "jdbc:postgresql://localhost:5432/hb_student_tracker",
+//                    config.get("jdbc.username"),
+//                    config.get("jdbc.password")
+//            );
             try (Statement st = connection.createStatement()) {
                 String sql = "DROP TABLE student";
                 st.executeUpdate(sql);
@@ -107,9 +114,9 @@ public class DataCreator implements AutoCloseable {
             } catch (SQLException e) {
                 System.out.println("DB error: " + e);
             }
-        } catch (SQLException e) {
-            System.out.println("DB error: " + e);
-        }
+//        } catch (SQLException e) {
+//            System.out.println("DB error: " + e);
+//        }
     }
 
     /**

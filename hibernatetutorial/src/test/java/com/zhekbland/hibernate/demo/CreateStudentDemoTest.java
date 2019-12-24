@@ -58,4 +58,16 @@ public class CreateStudentDemoTest {
         assertThat(resultEmail.getEmail(), is(student3.getEmail()));
         assertThat(resultGmailList, is(expected));
     }
+
+    /**
+     * We update student.
+     */
+    @Test
+    public void whenWeCreateAndUpdateStudent() {
+        Student student = new Student("John", "Stone", "john@gmail.com");
+        int studentId = this.studentDemo.save(student);
+        String newEmail = "stone@gmail.com";
+        Student resultUpdate = this.studentDemo.updateStudentEmail(studentId, newEmail);
+        assertThat(resultUpdate.getEmail(), is(newEmail));
+    }
 }

@@ -73,6 +73,17 @@ public class CreateStudentDemo implements AutoCloseable {
         return student;
     }
 
+    public Student updateStudentEmail(int id, String email) {
+        Student student;
+        try (Session session = this.factory.getCurrentSession()) {
+            session.beginTransaction();
+            student = session.get(Student.class, id);
+            student.setEmail(email);
+            session.getTransaction().commit();
+        }
+        return student;
+    }
+
 
     @Override
     public void close() {

@@ -70,4 +70,21 @@ public class CreateStudentDemoTest {
         Student resultUpdate = this.studentDemo.updateStudentEmail(studentId, newEmail);
         assertThat(resultUpdate.getEmail(), is(newEmail));
     }
+
+    /**
+     * We delete student:
+     * 1. Via HQL
+     * 2. Via delete method
+     */
+    @Test
+    public void whenWeCreateAndDeleteStudent() {
+        Student student1 = new Student("John", "Stone", "john@gmail.com");
+        Student student2 = new Student("Sam", "Smith", "sam@gmail.com");
+        int student1Id = this.studentDemo.save(student1);
+        int student2Id = this.studentDemo.save(student2);
+        boolean resultOne = this.studentDemo.deleteStudentViaHQL(student1Id);
+        boolean resultTwo = this.studentDemo.deleteStudent(student2Id);
+        assertThat(resultOne, is(true));
+        assertThat(resultTwo, is(true));
+    }
 }

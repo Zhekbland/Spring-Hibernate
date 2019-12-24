@@ -84,6 +84,31 @@ public class CreateStudentDemo implements AutoCloseable {
         return student;
     }
 
+    public boolean deleteStudentViaHQL(int id) {
+        boolean result = true;
+        try (Session session = this.factory.getCurrentSession()) {
+            session.beginTransaction();
+            session.createQuery("delete from Student where id = '" + id + "'").executeUpdate();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            result = false;
+        }
+        return result;
+    }
+
+    public boolean deleteStudent(int id) {
+        boolean result = true;
+        try (Session session = this.factory.getCurrentSession()) {
+            session.beginTransaction();
+            Student student = session.get(Student.class, id);
+            session.delete(student);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            result = false;
+        }
+        return result;
+    }
+
 
     @Override
     public void close() {

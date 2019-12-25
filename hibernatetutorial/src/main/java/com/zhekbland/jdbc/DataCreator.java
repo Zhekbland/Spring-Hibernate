@@ -12,7 +12,7 @@ import java.sql.*;
  * @version 1.
  * @since 14.06.2019.
  */
-public class DataCreator implements AutoCloseable {
+public class DataCreator implements DatabaseCreator, AutoCloseable {
 
     private final Config config;
 
@@ -53,7 +53,7 @@ public class DataCreator implements AutoCloseable {
     /**
      * Create database if it wasn't create.
      */
-    private void createDB() {
+    public void createDB() {
         try {
             this.connection = DriverManager.getConnection(
                     "jdbc:postgresql://localhost:5432/",
@@ -88,7 +88,7 @@ public class DataCreator implements AutoCloseable {
                 result = true;
             } else {
                 st.executeUpdate("create table student (id serial primary key, first_name varchar(45),"
-                        + "last_name varchar(45), email varchar(45))");
+                        + "last_name varchar(45), email varchar(45), date_of_birth DATE)");
                 System.out.println("Table jobs was create.");
             }
         } catch (SQLException e) {
@@ -101,12 +101,6 @@ public class DataCreator implements AutoCloseable {
      * Delete table.
      */
     public void deleteTable() {
-//        try {
-//            this.connection = DriverManager.getConnection(
-//                    "jdbc:postgresql://localhost:5432/hb_student_tracker",
-//                    config.get("jdbc.username"),
-//                    config.get("jdbc.password")
-//            );
             try (Statement st = connection.createStatement()) {
                 String sql = "DROP TABLE student";
                 st.executeUpdate(sql);
@@ -114,9 +108,6 @@ public class DataCreator implements AutoCloseable {
             } catch (SQLException e) {
                 System.out.println("DB error: " + e);
             }
-//        } catch (SQLException e) {
-//            System.out.println("DB error: " + e);
-//        }
     }
 
     /**

@@ -2,10 +2,12 @@ package com.zhekbland.hibernate.demo;
 
 import com.zhekbland.hibernate.demo.entity.Student;
 import com.zhekbland.jdbc.DataCreator;
+import com.zhekbland.jdbc.DatabaseCreator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
@@ -14,7 +16,7 @@ import static org.junit.Assert.*;
 public class CreateStudentDemoTest {
 
     private final CreateStudentDemo studentDemo = CreateStudentDemo.getInstance();
-    private final DataCreator dataCreator = DataCreator.getInstance();
+    private final DatabaseCreator dataCreator = DataCreator.getInstance();
 
     @Before
     public void init() {
@@ -86,5 +88,21 @@ public class CreateStudentDemoTest {
         boolean resultTwo = this.studentDemo.deleteStudent(student2Id);
         assertThat(resultOne, is(true));
         assertThat(resultTwo, is(true));
+    }
+
+    /**
+     * We delete student:
+     * 1. Via HQL
+     * 2. Via delete method
+     */
+    @Test
+    public void whenWeCreateStudentWithDateOfBirth() {
+        String dateOfBirthStr = "23/01/1992";
+        Date dateOfBirth = DateUtils.parseDate(dateOfBirthStr);
+        Student student = new Student("John", "Stone", "john@gmail.com", dateOfBirth);
+        int studentId = this.studentDemo.save(student);
+        Student result = this.studentDemo.get(studentId);
+        String resultDateOfBirth = DateUtils.formatDate(result.getDateOfBirth());
+        assertThat(resultDateOfBirth, is(dateOfBirthStr));
     }
 }

@@ -1,6 +1,9 @@
 package com.zhekbland.hibernate.demo.entity;
 
+import com.zhekbland.hibernate.demo.DateUtils;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -21,6 +24,10 @@ public class Student {
     @Column(name = "email")
     private String email;
 
+    @Column(name = "date_of_birth")
+    @Temporal(TemporalType.DATE)
+    private Date dateOfBirth;
+
     public Student() {
 
     }
@@ -29,6 +36,13 @@ public class Student {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    public Student(String firstName, String lastName, String email, Date dateOfBirth) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.dateOfBirth = dateOfBirth;
     }
 
     public int getId() {
@@ -63,6 +77,14 @@ public class Student {
         this.email = email;
     }
 
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -73,17 +95,22 @@ public class Student {
         }
         Student student = (Student) o;
         return Objects.equals(firstName, student.firstName) && Objects.equals(lastName, student.lastName)
-                && Objects.equals(email, student.email);
+                && Objects.equals(email, student.email) && Objects.equals(dateOfBirth, student.dateOfBirth);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName, email);
+        return Objects.hash(firstName, lastName, email, dateOfBirth);
     }
 
+    /*
+     * We will make an update to the toString method in our Student class.
+     * It will use the formatter from our DateUtils.class.
+     */
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", firstName='" + firstName + '\''
-                + ", lastName='" + lastName + '\'' + ", email='" + email + '\'' + '}';
+        return "Student{" + "id=" + id + ", firstName='" + firstName + '\'' + ", lastName='"
+                + lastName + '\'' + ", email='" + email + '\'' + ", dateOfBirth="
+                + DateUtils.formatDate(dateOfBirth) + '}';
     }
 }

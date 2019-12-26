@@ -20,4 +20,5 @@ services:
 
 before_install:
   - psql -c 'create database hb_student_tracker;' -U postgres
+  - psql -c 'create database hb_one_to_one;' -U postgres
 

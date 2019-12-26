@@ -12,6 +12,7 @@
         <module>spring-demo</module>
         <module>springmvc</module>
         <module>hibernatetutorial</module>
+        <module>hibernate-one-to-one</module>
     </modules>
 
     <properties>

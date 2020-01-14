@@ -78,4 +78,22 @@ public class CreateInstructorDemoTest {
 
         assertThat(result, is(instructor1));
     }
+
+    /*
+     * Will be deleted only InstructorDetail.
+     */
+    @Test
+    public void whenWeDeleteOnlyInstructorDetail() {
+        Instructor instructor1 = new Instructor("John", "Popovich", "john@gmai.com");
+        InstructorDetail instructorDetail1 = new InstructorDetail("youtube.com/channel/john", "play");
+
+        int instructorOneId = this.instructorDemo.save(instructor1, instructorDetail1);
+
+        this.instructorDemo.deleteInstructorDetail(instructorDetail1.getId());
+
+        InstructorDetail resultOne = this.instructorDemo.findByInstructorDetail(instructorDetail1.getId());
+        Instructor resultTwo = this.instructorDemo.findById(instructorOneId);
+        assertNull(resultOne);
+        assertNotNull(resultTwo);
+    }
 }

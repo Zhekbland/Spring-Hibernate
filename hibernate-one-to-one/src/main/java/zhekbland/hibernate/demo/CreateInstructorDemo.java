@@ -63,6 +63,26 @@ public class CreateInstructorDemo {
     }
 
     /*
+     * Will be deleted only InstructorDetail
+     * because we use cascade without remove AND
+     * interrupt bidirectional communication.
+     */
+    public boolean deleteInstructorDetail(int id) {
+        boolean result = true;
+        try (Session session = this.factory.getCurrentSession()) {
+            session.beginTransaction();
+            InstructorDetail instructorDetail = session.get(InstructorDetail.class, id);
+            instructorDetail.getInstructor().setInstructorDetail(null);
+            session.delete(instructorDetail);
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+            result = false;
+        }
+        return result;
+    }
+
+    /*
      * Here we check Bidirectional communication.
      */
     public Instructor findByInstructorDetailId(int instructorDetailId) {
@@ -75,5 +95,18 @@ public class CreateInstructorDemo {
             session.getTransaction().commit();
         }
         return instructor;
+    }
+
+    /*
+     * Here we check Bidirectional communication.
+     */
+    public InstructorDetail findByInstructorDetail(int instructorDetailId) {
+        InstructorDetail instructorDetail;
+        try (Session session = this.factory.getCurrentSession()) {
+            session.beginTransaction();
+            instructorDetail = session.get(InstructorDetail.class, instructorDetailId);
+            session.getTransaction().commit();
+        }
+        return instructorDetail;
     }
 }

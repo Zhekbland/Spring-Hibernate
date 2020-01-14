@@ -67,4 +67,15 @@ public class CreateInstructorDemoTest {
         assertNull(resultInstructorOne);
         assertThat(resultInstructorTwo, is(instructor2));
     }
+
+    @Test
+    public void whenWeTestBiDirectional() {
+        Instructor instructor1 = new Instructor("John", "Popovich", "john@gmai.com");
+        InstructorDetail instructorDetail1 = new InstructorDetail("youtube.com/channel/john", "play");
+
+        int instructorOneId = this.instructorDemo.save(instructor1, instructorDetail1);
+        Instructor result = this.instructorDemo.findByInstructorDetailId(instructorDetail1.getId());
+
+        assertThat(result, is(instructor1));
+    }
 }

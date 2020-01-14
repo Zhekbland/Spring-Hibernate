@@ -61,4 +61,19 @@ public class CreateInstructorDemo {
         }
         return result;
     }
+
+    /*
+     * Here we check Bidirectional communication.
+     */
+    public Instructor findByInstructorDetailId(int instructorDetailId) {
+        Instructor instructor;
+        InstructorDetail instructorDetail;
+        try (Session session = this.factory.getCurrentSession()) {
+            session.beginTransaction();
+            instructorDetail = session.get(InstructorDetail.class, instructorDetailId);
+            instructor = instructorDetail.getInstructor();
+            session.getTransaction().commit();
+        }
+        return instructor;
+    }
 }

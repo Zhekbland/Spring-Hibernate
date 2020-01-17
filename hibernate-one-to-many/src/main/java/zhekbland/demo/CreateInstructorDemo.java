@@ -3,6 +3,7 @@ package zhekbland.demo;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import zhekbland.demo.entity.Course;
 import zhekbland.demo.entity.Instructor;
 import zhekbland.demo.entity.InstructorDetail;
@@ -49,14 +50,33 @@ public class CreateInstructorDemo {
     }
 
     public List<Course> getInstructorCourses(int instructorId) {
-        List<Course> courses;
+        List<Course> courses = null;
         try (Session session = this.factory.getCurrentSession()) {
             session.beginTransaction();
             Instructor instructor = session.get(Instructor.class, instructorId);
             courses = instructor.getCourses();
             session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return courses;
+    }
+
+    public Instructor getInstructorCoursesViaHQL(int instructorId) {
+        Instructor instructor = null;
+        try (Session session = this.factory.getCurrentSession()) {
+            session.beginTransaction();
+            Query<Instructor> query = session.createQuery("select i from Instructor i "
+                    + "join fetch  i.courses "
+                    + "where i.id=:instructorId", Instructor.class);
+            query.setParameter("instructorId", instructorId);
+            instructor = query.getSingleResult();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Ough Fault!!");
+            e.printStackTrace();
+        }
+        return instructor;
     }
 
     /*

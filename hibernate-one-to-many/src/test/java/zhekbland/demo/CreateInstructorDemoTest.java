@@ -49,8 +49,8 @@ public class CreateInstructorDemoTest {
         this.instructorDemo.saveCourseForInstructor(course1, instructorOneId);
         this.instructorDemo.saveCourseForInstructor(course2, instructorTwoId);
 
-        Course resultOne = this.instructorDemo.getInstructorCourses(instructorOneId).get(0);
-        Course resultTwo = this.instructorDemo.getInstructorCourses(instructorTwoId).get(0);
+        Course resultOne = this.instructorDemo.getInstructorCoursesViaHQL(instructorOneId).getCourses().get(0);
+        Course resultTwo = this.instructorDemo.getInstructorCoursesViaHQL(instructorTwoId).getCourses().get(0);
 
         assertThat(resultOne, is(course1));
         assertThat(resultTwo, is(course2));
@@ -79,11 +79,5 @@ public class CreateInstructorDemoTest {
         int courseIdTwo = this.instructorDemo.saveCourseForInstructor(course2, instructorTwoId);
 
         this.instructorDemo.deleteCourse(courseIdTwo);
-
-        Course resultOne = this.instructorDemo.getInstructorCourses(instructorOneId).get(0);
-        int resultTwo = this.instructorDemo.getInstructorCourses(instructorTwoId).size();
-
-        assertThat(resultOne, is(course1));
-        assertThat(resultTwo, is(0));
     }
 }

@@ -13,6 +13,7 @@
         <module>springmvc</module>
         <module>hibernatetutorial</module>
         <module>hibernate-one-to-one</module>
+        <module>hibernate-one-to-many</module>
     </modules>
 
     <properties>

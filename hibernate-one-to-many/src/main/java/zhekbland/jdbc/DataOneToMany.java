@@ -84,6 +84,8 @@ public class DataOneToMany implements DatabaseCreator {
                         + "instructor_detail_id int references instructor_detail(id))");
                 st.addBatch("create table course (id serial primary key, title varchar(128) UNIQUE ,"
                         + "instructor_id int references instructor(id))");
+                st.addBatch("create table review (id serial primary key, comment varchar(256),"
+                        + "course_id int references course(id))");
                 st.executeBatch();
                 System.out.println("Tables were created.");
             }
@@ -98,9 +100,10 @@ public class DataOneToMany implements DatabaseCreator {
      */
     public void deleteTable() {
         try (Statement st = connection.createStatement()) {
-            st.addBatch("DROP TABLE course");
+            st.addBatch("DROP TABLE course CASCADE");
+            st.addBatch("DROP TABLE review CASCADE");
             st.addBatch("DROP TABLE instructor_detail CASCADE");
-            st.addBatch("DROP TABLE instructor");
+            st.addBatch("DROP TABLE instructor CASCADE");
             st.executeBatch();
             System.out.println("Tables were deleted");
         } catch (SQLException e) {

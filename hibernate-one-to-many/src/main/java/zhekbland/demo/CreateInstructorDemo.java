@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import zhekbland.demo.entity.Course;
 import zhekbland.demo.entity.Instructor;
 import zhekbland.demo.entity.InstructorDetail;
+import zhekbland.demo.entity.Review;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class CreateInstructorDemo {
                 .addAnnotatedClass(Instructor.class)
                 .addAnnotatedClass(InstructorDetail.class)
                 .addAnnotatedClass(Course.class)
+                .addAnnotatedClass(Review.class)
                 .buildSessionFactory();
     }
 
@@ -42,6 +44,18 @@ public class CreateInstructorDemo {
         try (Session session = this.factory.getCurrentSession()) {
             session.beginTransaction();
             Instructor instructor = session.get(Instructor.class, instructorId);
+            instructor.add(course);
+            session.save(course);
+            session.getTransaction().commit();
+        }
+        return course.getId();
+    }
+
+    public int saveCourseForInstructor(Course course, Review review, int instructorId) {
+        try (Session session = this.factory.getCurrentSession()) {
+            session.beginTransaction();
+            Instructor instructor = session.get(Instructor.class, instructorId);
+            course.addReview(review);
             instructor.add(course);
             session.save(course);
             session.getTransaction().commit();
@@ -77,6 +91,22 @@ public class CreateInstructorDemo {
             e.printStackTrace();
         }
         return instructor;
+    }
+
+    public Course getReviewViaHQL(int courseId) {
+        Course course = null;
+        try (Session session = this.factory.getCurrentSession()) {
+            session.beginTransaction();
+            Query<Course> query = session.createQuery("select c from Course c "
+            + "join fetch c.reviews "
+            + "where c.id=:courseId", Course.class);
+            query.setParameter("courseId", courseId);
+            course = query.getSingleResult();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return course;
     }
 
     /*

@@ -22,4 +22,5 @@ before_install:
   - psql -c 'create database hb_student_tracker;' -U postgres
   - psql -c 'create database hb_one_to_one;' -U postgres
   - psql -c 'create database hb_one_to_many;' -U postgres
+  - psql -c 'create database hb_many_to_many;' -U postgres
 

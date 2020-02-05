@@ -3,6 +3,7 @@ package com.zhekbland.presentation;
 import com.zhekbland.dao.CustomerDAO;
 import com.zhekbland.model.Customer;
 import com.zhekbland.persistence.CustomerDB;
+import com.zhekbland.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,13 +26,13 @@ public class CustomerController {
 
     // need to inject the customer dao
     @Autowired
-    private CustomerDAO customerDAO;
+    private CustomerService customerService;
 
     @RequestMapping("/list")
     public String listCustomers(Model model) {
 
-        // get customers from the dao
-        List<Customer> customers = this.customerDAO.getCustomer();
+        // get customers from the service
+        List<Customer> customers = this.customerService.getCustomers();
 
         // add the customers to the model
         model.addAttribute("customers", customers);

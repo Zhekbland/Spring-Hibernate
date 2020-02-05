@@ -1,10 +1,10 @@
-package com.zhekbland.dao;
+package com.zhekbland.service;
 
 import com.zhekbland.model.Customer;
 
 import java.util.List;
 
-public interface CustomerDAO {
+public interface CustomerService {
 
     public List<Customer> getCustomers();
 }

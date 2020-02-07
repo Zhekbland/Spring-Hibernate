@@ -12,7 +12,10 @@ public class DemoConfigTest {
         AnnotationConfigApplicationContext context = new  AnnotationConfigApplicationContext(DemoConfig.class);
         AccountDAO accountDAO = context.getBean(AccountDAO.class);
         MembershipDAO membershipDAO = context.getBean(MembershipDAO.class);
-        accountDAO.addAccount();
+
+        Account account = new Account();
+
+        accountDAO.addAccount(account);
         membershipDAO.addAccount();
         context.close();
     }

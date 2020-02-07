@@ -15,7 +15,7 @@ public class DemoConfigTest {
 
         Account account = new Account();
 
-        accountDAO.addAccount(account);
+        accountDAO.addAccount(account, true);
         membershipDAO.addAccount();
         context.close();
     }

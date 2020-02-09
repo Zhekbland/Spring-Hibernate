@@ -9,17 +9,32 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyLoggingAspect {
 
-    @Pointcut("execution(* add*(..))")
+    @Pointcut("execution(* *(..))")
     private void forDaoPackage() {
 
     }
 
-    @Before("forDaoPackage()")
+    @Pointcut("execution(* get*(..))")
+    private void getter() {
+
+    }
+
+    @Pointcut("execution(* set*(..))")
+    private void setter() {
+
+    }
+
+    @Pointcut("forDaoPackage() && !(getter() || setter())")
+    private void forDaoNoGetterSetter() {
+
+    }
+
+    @Before("forDaoNoGetterSetter()")
     public void beforeAddAccountAdvice() {
         System.out.println("Executing @Before advice");
     }
 
-    @Before("forDaoPackage()")
+    @Before("forDaoNoGetterSetter()")
     public void performApiAnalytics() {
         System.out.println("Performing API analytics");
     }

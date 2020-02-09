@@ -16,6 +16,8 @@ public class DemoConfigTest {
         Account account = new Account();
 
         accountDAO.addAccount(account, true);
+        accountDAO.setName("foobar");
+        accountDAO.setServiceCode("silver");
         membershipDAO.addAccount();
         context.close();
     }

@@ -13,7 +13,7 @@ public class DemoConfigTest {
         AccountDAO accountDAO = context.getBean(AccountDAO.class);
         MembershipDAO membershipDAO = context.getBean(MembershipDAO.class);
 
-        Account account = new Account();
+        Account account = new Account("John", "Middle");
 
         accountDAO.addAccount(account, true);
         accountDAO.setName("foobar");

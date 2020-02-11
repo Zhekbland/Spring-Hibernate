@@ -3,12 +3,23 @@ package com.zhekbland.aop.dao;
 import com.zhekbland.aop.Account;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class AccountDAO {
 
     private String name;
 
     private String serviceCode;
+
+    public List<Account> findAccounts() {
+        List<Account> myAccounts = new ArrayList<>();
+        myAccounts.add(new Account("John", "Silver"));
+        myAccounts.add(new Account("Madhu", "Platinum"));
+        myAccounts.add(new Account("Luca", "Gold"));
+        return myAccounts;
+    }
 
     public void addAccount(Account account, boolean vipFlag) {
         System.out.println(getClass() + ": doing work: adding account");

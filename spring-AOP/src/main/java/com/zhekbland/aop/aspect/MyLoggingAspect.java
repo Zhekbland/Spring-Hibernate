@@ -1,13 +1,15 @@
 package com.zhekbland.aop.aspect;
 
 import com.zhekbland.aop.Account;
-import net.bytebuddy.description.modifier.MethodArguments;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Aspect
 @Component
@@ -31,6 +33,13 @@ public class MyLoggingAspect {
             }
         }
 
+    }
+
+    @AfterReturning(pointcut = "execution(* com.zhekbland.aop.dao.AccountDAO.findAccounts(..))", returning = "result")
+    public void afterReturningFindAccountAdvice(JoinPoint joinPoint, List<Account> result) {
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\n Executing @AfterReturning on method: " + method);
+        System.out.println("\n result is: " + result);
     }
 
 }

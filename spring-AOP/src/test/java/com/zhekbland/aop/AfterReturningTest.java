@@ -16,7 +16,7 @@ public class AfterReturningTest {
 
         List<Account> accounts = accountDAO.findAccounts();
 
-        System.out.println(accounts);
+        System.out.println("\nMain program result: " + accounts);
 
         context.close();
     }

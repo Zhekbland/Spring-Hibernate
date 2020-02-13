@@ -21,6 +21,17 @@ public class AccountDAO {
         return myAccounts;
     }
 
+    public List<Account> findAccounts(boolean tripWire) {
+        if (tripWire) {
+            throw new RuntimeException("No soup for you!!!");
+        }
+        List<Account> myAccounts = new ArrayList<>();
+        myAccounts.add(new Account("John", "Silver"));
+        myAccounts.add(new Account("Madhu", "Platinum"));
+        myAccounts.add(new Account("Luca", "Gold"));
+        return myAccounts;
+    }
+
     public void addAccount(Account account, boolean vipFlag) {
         System.out.println(getClass() + ": doing work: adding account");
     }

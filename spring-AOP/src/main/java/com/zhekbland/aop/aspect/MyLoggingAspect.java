@@ -3,6 +3,7 @@ package com.zhekbland.aop.aspect;
 import com.zhekbland.aop.Account;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -16,6 +17,15 @@ import java.util.stream.Collectors;
 @Component
 @Order(2)
 public class MyLoggingAspect {
+
+    @AfterThrowing(pointcut = "execution(* com.zhekbland.aop.dao.AccountDAO.findAccounts(..))",
+            throwing = "theExc")
+    public void afterThrowingFindAccountsAdvice(JoinPoint joinPoint, Throwable theExc) {
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\nExecuting @AfterThrowing on method: " + method);
+
+        System.out.println("The exception is: " + theExc);
+    }
 
     @Before("com.zhekbland.aop.aspect.AopExpressions.forDaoNoGetterSetter()")
     public void beforeAddAccountAdvice(JoinPoint joinPoint) {

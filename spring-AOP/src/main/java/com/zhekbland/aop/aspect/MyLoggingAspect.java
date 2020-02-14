@@ -30,8 +30,9 @@ public class MyLoggingAspect {
         try {
             result = proceedingJoinPoint.proceed();
         } catch (Exception e) {
-            logger.info(e.getMessage());
-            result = "Major accident! But no worries...";
+            logger.warning(e.getMessage());
+            //rethrow exception;
+            throw  e;
         }
 
         long end = System.currentTimeMillis();

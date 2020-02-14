@@ -11,7 +11,7 @@ public class AroundHandleExceptionTest {
 
     private static Logger logger = Logger.getLogger(AroundHandleExceptionTest.class.getName());
 
-    @Test
+    @Test(expected = Exception.class)
     public void whenWeTestAOPAfterWithException() {
         AnnotationConfigApplicationContext context = new  AnnotationConfigApplicationContext(DemoConfig.class);
 

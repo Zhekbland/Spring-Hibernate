@@ -25,7 +25,15 @@ public class MyLoggingAspect {
         logger.info("\nExecuting @Around on method: " + method);
 
         long begin = System.currentTimeMillis();
-        Object result = proceedingJoinPoint.proceed();
+        Object result = null;
+
+        try {
+            result = proceedingJoinPoint.proceed();
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+            result = "Major accident! But no worries...";
+        }
+
         long end = System.currentTimeMillis();
 
         long duration = end - begin;

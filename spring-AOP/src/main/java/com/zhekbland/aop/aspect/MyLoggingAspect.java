@@ -2,10 +2,7 @@ package com.zhekbland.aop.aspect;
 
 import com.zhekbland.aop.Account;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -17,6 +14,12 @@ import java.util.stream.Collectors;
 @Component
 @Order(2)
 public class MyLoggingAspect {
+
+    @After("execution(* com.zhekbland.aop.dao.AccountDAO.findAccounts(..))")
+    public void afterFinallyFindAccountsAdvice(JoinPoint joinPoint) {
+        String method = joinPoint.getSignature().toShortString();
+        System.out.println("\nExecuting @After (finally) on method: " + method);
+    }
 
     @AfterThrowing(pointcut = "execution(* com.zhekbland.aop.dao.AccountDAO.findAccounts(..))",
             throwing = "theExc")

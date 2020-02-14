@@ -9,6 +9,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Aspect
@@ -16,17 +17,19 @@ import java.util.stream.Collectors;
 @Order(2)
 public class MyLoggingAspect {
 
+    private Logger logger = Logger.getLogger(MyLoggingAspect.class.getName());
+
     @Around("execution(* com.zhekbland.aop.service.TrafficFortuneService.getFortune(..))")
     public Object aroundGetFortune(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         String method = proceedingJoinPoint.getSignature().toShortString();
-        System.out.println("\nExecuting @Around on method: " + method);
+        logger.info("\nExecuting @Around on method: " + method);
 
         long begin = System.currentTimeMillis();
         Object result = proceedingJoinPoint.proceed();
         long end = System.currentTimeMillis();
 
         long duration = end - begin;
-        System.out.println("\nDuration: " + duration / 1000.0 + " seconds");
+        logger.info("\nDuration: " + duration / 1000.0 + " seconds");
         return result;
     }
 

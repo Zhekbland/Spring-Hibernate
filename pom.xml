@@ -17,11 +17,14 @@
         <module>hibernate-many-to-many</module>
         <module>springmvc-and-hibernate</module>
         <module>spring-AOP</module>
+        <module>spring-security</module>
     </modules>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <springframework.version>5.2.1.RELEASE</springframework.version>
+        <springsecurity.version>5.2.0.RELEASE</springsecurity.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -78,61 +81,48 @@
             <version>5.4.2.Final</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+            <!--Spring-->
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>5.2.1.RELEASE</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>5.2.1.RELEASE</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>5.2.1.RELEASE</version>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${springframework.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-aspects -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aspects</artifactId>
-            <version>5.2.1.RELEASE</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>42.2.5</version>
+            <version>${springframework.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>5.2.1.RELEASE</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>5.2.1.RELEASE</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-webmvc -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>5.2.1.RELEASE</version>
+            <version>${springframework.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>5.2.1.RELEASE</version>
+            <version>${springframework.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${springsecurity.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${springsecurity.version}</version>
+        </dependency>
+
+
+
+        <!--JSTL-->
         <!-- https://mvnrepository.com/artifact/jstl/jstl -->
         <dependency>
             <groupId>jstl</groupId>
@@ -145,13 +135,14 @@
             <artifactId>taglibs-standard-impl</artifactId>
             <version>1.2.5</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.9.5</version>
-        </dependency>
 
+        <!--Postgresql-->
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.5</version>
+        </dependency>
 
         <!--        connection pool for hibernate-->
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-c3p0 -->

@@ -23,6 +23,20 @@
 
     <hr>
 
+    <p>
+        <a href="${pageContext.request.contextPath}/leaders">LeaderShip Meeting</a>
+        (Only for Manager peeps)
+    </p>
+
+    <hr>
+
+    <p>
+        <a href="${pageContext.request.contextPath}/systems">IT Systems Meeting</a>
+        (Only for Admin peeps)
+    </p>
+
+    <hr>
+
     <form:form action="${pageContext.request.contextPath}/logout" method="post">
         <input type="submit" value="Logout">
     </form:form>

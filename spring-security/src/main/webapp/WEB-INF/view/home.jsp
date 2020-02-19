@@ -1,10 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Жека
-  Date: 17.02.2020
-  Time: 17:31
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -13,6 +8,12 @@
 <body>
     <h2>Company Home Page</h2>
     <hr>
-    Welcome
+    <p>
+        Welcome
+    </p>
+
+    <form:form action="${pageContext.request.contextPath}/logout" method="post">
+        <input type="submit" value="Logout">
+    </form:form>
 </body>
 </html>

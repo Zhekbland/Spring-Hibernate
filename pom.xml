@@ -18,6 +18,7 @@
         <module>springmvc-and-hibernate</module>
         <module>spring-AOP</module>
         <module>spring-security</module>
+        <module>spring-security-db</module>
     </modules>
 
     <properties>

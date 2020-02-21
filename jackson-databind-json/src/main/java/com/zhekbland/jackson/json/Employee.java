@@ -1,8 +1,11 @@
 package com.zhekbland.jackson.json;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Arrays;
 import java.util.Objects;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Employee {
 
     private int id;

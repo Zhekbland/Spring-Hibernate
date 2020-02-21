@@ -79,15 +79,18 @@ public class CustomerDB {
                 result = true;
             } else {
                 st.executeUpdate("create table users (username varchar(50) primary key,"
-                        + "password varchar(50) not null,"
+                        + "password char(68) not null,"
                         + "enabled tinyint(1) not null)");
 
                 st.executeUpdate("create table authorities (username varchar(50) not null references users(user),"
                         + "authority varchar(50) not null)");
 
-                st.addBatch("INSERT INTO users values('john', '{noop}test123', 1)");
-                st.addBatch("INSERT INTO users values('mary', '{noop}test123', 1)");
-                st.addBatch("INSERT INTO users values('susan', '{noop}test123', 1)");
+                st.addBatch("INSERT INTO users values('john',"
+                        + "'{bcrypt}$2a$10$xejjGhLS/pa5khDJJISspObul.y7YD8LCnFnw3urJd5HnB.B.5906', 1)");
+                st.addBatch("INSERT INTO users values('mary',"
+                        + "'{bcrypt}$2a$10$xejjGhLS/pa5khDJJISspObul.y7YD8LCnFnw3urJd5HnB.B.5906', 1)");
+                st.addBatch("INSERT INTO users values('susan',"
+                        + "'{bcrypt}$2a$10$xejjGhLS/pa5khDJJISspObul.y7YD8LCnFnw3urJd5HnB.B.5906', 1)");
 
                 st.addBatch("INSERT INTO authorities values('john', 'ROLE_EMPLOYEE')");
                 st.addBatch("INSERT INTO authorities values('mary', 'ROLE_EMPLOYEE')");

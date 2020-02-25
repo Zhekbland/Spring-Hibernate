@@ -2,9 +2,11 @@ package com.zhekbland.rest;
 
 import com.zhekbland.entity.Student;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,22 +16,26 @@ import java.util.TreeMap;
 @RequestMapping("/api")
 public class StudentRestController {
 
+    private List<Student> students;
+
+    @PostConstruct
+    public void loadData() {
+        if (this.students == null) {
+            this.students = new ArrayList<>();
+            students.add(new Student("John", "Carter"));
+            students.add(new Student("Sam", "Hobbit"));
+            students.add(new Student("Sandy", "Squirrel"));
+            students.add(new Student("Ron", "Smith"));
+        }
+    }
+
     @GetMapping("/students")
     public List<Student> getStudents() {
-        List<Student> students = new ArrayList<>();
-        students.add(new Student("John", "Carter"));
-        students.add(new Student("Sam", "Hobbit"));
-        students.add(new Student("Sandy", "Squirrel"));
-        students.add(new Student("Ron", "Smith"));
         return students;
     }
 
-    @GetMapping("/mapstudents")
-    public Map<Integer, Student> getMapStudents() {
-        Map<Integer, Student> students = new TreeMap<>();
-        students.put(1, new Student("John", "Carter"));
-        students.put(2, new Student("Sam", "Hobbit"));
-        students.put(3, new Student("Sandy", "Squirrel"));
-        return students;
+    @GetMapping("/student/{studentId}")
+    public Student getStudents(@PathVariable int studentId) {
+        return this.students.get(studentId);
     }
 }

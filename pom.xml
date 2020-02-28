@@ -22,6 +22,7 @@
         <module>jackson-databind-json</module>
         <module>spring-rest</module>
         <module>spring-crm-rest</module>
+        <module>crm-web-app-rest-client</module>
     </modules>
 
     <properties>

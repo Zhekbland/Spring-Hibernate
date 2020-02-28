@@ -9,7 +9,9 @@ import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
@@ -94,6 +96,14 @@ public class Config {
         txManager.setSessionFactory(sessionFactory);
 
         return txManager;
+    }
+
+    @Bean
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setPrefix("/WEB-INF/view/");
+        viewResolver.setSuffix(".jsp");
+        return viewResolver;
     }
 
 }

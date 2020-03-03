@@ -24,6 +24,7 @@
         <module>spring-crm-rest</module>
         <module>crm-web-app-rest-client</module>
         <module>springboot</module>
+        <module>springbootcrud</module>
     </modules>
 
     <properties>

@@ -25,6 +25,7 @@
         <module>crm-web-app-rest-client</module>
         <module>springboot</module>
         <module>springbootcrud</module>
+        <module>springbootdatajpa</module>
     </modules>
 
     <properties>

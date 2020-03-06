@@ -26,6 +26,7 @@
         <module>springboot</module>
         <module>springbootcrud</module>
         <module>springbootdatajpa</module>
+        <module>spring-boot-data-rest-crud</module>
     </modules>
 
     <properties>

@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.zhekbland.springboot</groupId>
 	<artifactId>spring-boot-data-rest-crud</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>spring-boot-data-rest-crud</name>
 	<description>Demo project for Spring Boot</description>
 

@@ -33,7 +33,7 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <springframework.version>5.2.1.RELEASE</springframework.version>
+        <springframework.version>5.2.4.RELEASE</springframework.version>
         <springsecurity.version>5.2.0.RELEASE</springsecurity.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

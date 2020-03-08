@@ -27,6 +27,7 @@
         <module>springbootcrud</module>
         <module>springbootdatajpa</module>
         <module>spring-boot-data-rest-crud</module>
+        <module>thymeleaf</module>
     </modules>
 
     <properties>

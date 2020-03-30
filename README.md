@@ -15,6 +15,7 @@
 * Spring Security
 * Spring Boot
 * Spring REST-full
+* Thymeleaf
 
 ### Контрольные задания. Изученые темы.
 
@@ -149,3 +150,16 @@
 * Hibernate, JPA DAO
 * Jpa Repository
 * @RepositoryRestResource
+* Thymeleaf
+
+### 8.1) [Spring Thymeleaf database CRUD](https://github.com/Zhekbland/Spring-Hibernate/tree/master/thymeleaf-database-crud/src/main)
+### [Приложение на Heroku](https://zhekbland-spring-thymeleaf.herokuapp.com/)
+Приложение демонстрирует работу Spring-Boot и Thymeleaf. Для CRUD запросов используется удаленная БД MySQL.
+Для оформления используется Bootstrap.
+
+Скриншоты приложения:
+
+<img src='https://github.com/Zhekbland/Spring-Hibernate/blob/master/pic/thymeleaf/thymeleaf1.png'>
+
+###
+<img src='https://github.com/Zhekbland/Spring-Hibernate/blob/master/pic/thymeleaf/thymeleaf2.png'>
